@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d38w7f1mrh0r2"
-path="res://.godot/imported/tileset.png-b67bcc1345b5b01f765c075a002d2f2e.ctex"
+uid="uid://bbnpqfdj545gb"
+path="res://.godot/imported/fireflower.png-b1a9f4399f5a70d73dbf85e3f3cdf00c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-b67bcc1345b5b01f765c075a002d2f2e.ctex"]
+source_file="res://Assets/spritesheets/fireflower.png"
+dest_files=["res://.godot/imported/fireflower.png-b1a9f4399f5a70d73dbf85e3f3cdf00c.ctex"]
 
 [params]
 

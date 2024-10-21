@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2il0x52t8soq"
-path="res://.godot/imported/koopa.png-315eecf302fe696a0fd86b996d4988c5.ctex"
+uid="uid://biqgiasumw56k"
+path="res://.godot/imported/star.png-4a96b72cd83adcd2c22e2ae2cce21f20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/koopa.png"
-dest_files=["res://.godot/imported/koopa.png-315eecf302fe696a0fd86b996d4988c5.ctex"]
+source_file="res://Assets/spritesheets/star.png"
+dest_files=["res://.godot/imported/star.png-4a96b72cd83adcd2c22e2ae2cce21f20.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbnpqfdj545gb"
-path="res://.godot/imported/fireflower.png-919b79e9f67c09d31bfb373a186b0beb.ctex"
+uid="uid://bw0v7yjdl2bp5"
+path="res://.godot/imported/coin.png-991bad9a0e872a853c9499b3cab8788e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/fireflower.png"
-dest_files=["res://.godot/imported/fireflower.png-919b79e9f67c09d31bfb373a186b0beb.ctex"]
+source_file="res://Assets/spritesheets/coin.png"
+dest_files=["res://.godot/imported/coin.png-991bad9a0e872a853c9499b3cab8788e.ctex"]
 
 [params]
 

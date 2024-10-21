@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biqgiasumw56k"
-path="res://.godot/imported/star.png-09d73de6fc2f4fc553096ebd2709906d.ctex"
+uid="uid://byilki7xr8h7"
+path="res://.godot/imported/mario.png-4ca50ab1329a15f642a06d609c68a620.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/star.png"
-dest_files=["res://.godot/imported/star.png-09d73de6fc2f4fc553096ebd2709906d.ctex"]
+source_file="res://Assets/spritesheets/mario.png"
+dest_files=["res://.godot/imported/mario.png-4ca50ab1329a15f642a06d609c68a620.ctex"]
 
 [params]
 
