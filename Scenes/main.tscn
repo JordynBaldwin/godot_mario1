@@ -9,4 +9,3 @@
 
 [node name="Player" parent="." instance=ExtResource("2_p63xi")]
 position = Vector2(32, 32)
-scale = Vector2(2, 2)
