@@ -97,4 +97,7 @@ tile_set = SubResource("TileSet_gy6r8")
 collision_enabled = false
 
 [node name="Goomba" parent="." instance=ExtResource("2_faknc")]
-position = Vector2(347, 329)
+position = Vector2(338, 531)
+
+[node name="Goomba2" parent="." instance=ExtResource("2_faknc")]
+position = Vector2(415, 530)
