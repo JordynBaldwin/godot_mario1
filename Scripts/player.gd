@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
 
+func damage():
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

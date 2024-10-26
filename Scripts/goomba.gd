@@ -13,6 +13,15 @@ signal squish
 func _ready():
 	touch.connect(damagePlayer)
 	squish.connect(death)
+	
+func walking_body_enter(body):
+	pass
+	
+func walking_body_exit(body):
+	pass
+	
+func damage():
+	queue_free()
 
 func damagePlayer():
 	get_tree().get_first_node_in_group("player").queue_free()
