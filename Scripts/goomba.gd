@@ -7,12 +7,16 @@ const SPEED = 40.0
 @onready var death_timer = $DeathTimer
 var dead = false
 
+signal touch
 signal squish
 
 func _ready():
+	touch.connect(damagePlayer)
 	squish.connect(death)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func damagePlayer():
+	get_tree().get_first_node_in_group("player").queue_free()
+
 func death():
 	dead = true
 	velocity.x = 0

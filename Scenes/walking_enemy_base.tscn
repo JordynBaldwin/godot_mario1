@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7hiie0nja4xg"]
 
-[ext_resource type="Script" path="res://Scenes/walking_enemy_base.gd" id="1_q3ht7"]
+[ext_resource type="Script" path="res://Scripts/walking_enemy_base.gd" id="1_q3ht7"]
 
 [node name="WalkingEnemyBase" type="Area2D"]
 collision_layer = 2
