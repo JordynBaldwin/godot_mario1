@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0sjei8tv6hrr"]
+
+[ext_resource type="Script" path="res://Scripts/walking_enemy_top.gd" id="1_3yqdm"]
+
+[node name="walking_enemy_top" type="Area2D"]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_3yqdm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

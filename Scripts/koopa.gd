@@ -55,7 +55,6 @@ func touched():
 
 func squished():
 	if (state == states["shell"]):
-		print("squish in shell state")
 		touched()
 	if (!squishable_timer): # need fix
 		velocity.x = 0

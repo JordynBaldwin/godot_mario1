@@ -113,7 +113,7 @@ position = Vector2(371, 551)
 position = Vector2(588, 542)
 
 [node name="Koopa" parent="." instance=ExtResource("3_7ng7e")]
-position = Vector2(293, 531)
+position = Vector2(290, 535)
 
 [node name="Koopa2" parent="." instance=ExtResource("3_7ng7e")]
 position = Vector2(551, 528)

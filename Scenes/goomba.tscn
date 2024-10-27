@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://blixlosd0vesf"]
+[gd_scene load_steps=12 format=3 uid="uid://blixlosd0vesf"]
 
 [ext_resource type="Script" path="res://Scripts/goomba.gd" id="1_7grab"]
 [ext_resource type="Texture2D" uid="uid://bkjuosltk86qi" path="res://Assets/spritesheets/goomba.png" id="1_f7t5r"]
 [ext_resource type="PackedScene" uid="uid://b7hiie0nja4xg" path="res://Scenes/walking_enemy_base.tscn" id="2_h346f"]
+[ext_resource type="PackedScene" uid="uid://b0sjei8tv6hrr" path="res://Scenes/walking_enemy_top.tscn" id="4_sd15b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d0g72"]
 atlas = ExtResource("1_f7t5r")
@@ -38,6 +39,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3r7s"]
+size = Vector2(16, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7wl"]
 size = Vector2(20, 18.1875)
 
@@ -55,6 +59,12 @@ sprite_frames = SubResource("SpriteFrames_myr0k")
 animation = &"walk"
 autoplay = "walk"
 frame_progress = 0.43789
+
+[node name="walking_enemy_top" parent="." instance=ExtResource("4_sd15b")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walking_enemy_top"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_v3r7s")
 
 [node name="WalkingEnemyBase" parent="." instance=ExtResource("2_h346f")]
 position = Vector2(0, 7)
