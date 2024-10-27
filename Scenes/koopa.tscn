@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cyotb7fciumjb"]
+
+[ext_resource type="Script" path="res://Scripts/koopa.gd" id="1_sw7c2"]
+[ext_resource type="Texture2D" uid="uid://b2il0x52t8soq" path="res://Assets/spritesheets/koopa.png" id="2_ohgvi"]
+[ext_resource type="PackedScene" uid="uid://b7hiie0nja4xg" path="res://Scenes/walking_enemy_base.tscn" id="3_qkfq0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5dp2"]
+atlas = ExtResource("2_ohgvi")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_087g6"]
+atlas = ExtResource("2_ohgvi")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0gn3"]
+atlas = ExtResource("2_ohgvi")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myr0k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5dp2")
+}],
+"loop": true,
+"name": &"shell",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_087g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0gn3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7wl"]
+size = Vector2(20, 18.1875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tvfy"]
+size = Vector2(28, 10)
+
+[node name="Koopa" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_sw7c2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_myr0k")
+animation = &"shell"
+autoplay = "walk"
+
+[node name="WalkingEnemyBase" parent="." instance=ExtResource("3_qkfq0")]
+position = Vector2(0, 23)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WalkingEnemyBase"]
+shape = SubResource("RectangleShape2D_sd7wl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 27)
+shape = SubResource("RectangleShape2D_4tvfy")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

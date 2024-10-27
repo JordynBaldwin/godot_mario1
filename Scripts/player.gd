@@ -6,6 +6,8 @@ const JUMP_VELOCITY = -800.0
 var g_mult = 1.0
 var big_jump = false
 
+func damage():
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

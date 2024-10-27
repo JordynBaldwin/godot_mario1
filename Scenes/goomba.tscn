@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://blixlosd0vesf"]
 
-[ext_resource type="Script" path="res://Scenes/goomba.gd" id="1_7grab"]
+[ext_resource type="Script" path="res://Scripts/goomba.gd" id="1_7grab"]
 [ext_resource type="Texture2D" uid="uid://bkjuosltk86qi" path="res://Assets/spritesheets/goomba.png" id="1_f7t5r"]
 [ext_resource type="PackedScene" uid="uid://b7hiie0nja4xg" path="res://Scenes/walking_enemy_base.tscn" id="2_h346f"]
 
@@ -44,7 +44,7 @@ size = Vector2(20, 18.1875)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tvfy"]
 size = Vector2(28, 10)
 
-[node name="Goomba" type="CharacterBody2D"]
+[node name="Goomba" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_7grab")
@@ -68,6 +68,10 @@ shape = SubResource("RectangleShape2D_4tvfy")
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 0.25
+one_shot = true
+
+[node name="SquishableTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
