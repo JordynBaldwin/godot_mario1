@@ -6,7 +6,12 @@ const ROLL_SPEED = 250.0
 @onready var sprite = $AnimatedSprite2D
 @onready var walking_enemy_base = $WalkingEnemyBase
 @onready var death_timer = $DeathTimer
-@onready var squishable_timer = $SquishableTimer
+@onready var time_till_kickable = $TimeTillKickable
+
+# debug
+@onready var debug_label = $DebugLabel
+
+# end debug
 
 var dead = false
 var entered_bodies = []
@@ -35,15 +40,17 @@ func damage():
 	queue_free()
 
 func damagePlayer():
-	get_tree().get_first_node_in_group("player").queue_free()
+	get_tree().get_first_node_in_group("player").damage()
 
 func kicked():
-	walking_enemy_base.raycastDamages = true
-	state = states["shell_moving"]
-	if (get_tree().get_first_node_in_group("player").position.x < position.x):
-		walking_enemy_base.direction = 1
-	else:
-		walking_enemy_base.direction = -1
+	if (!time_till_kickable.time_left > 0):
+		time_till_kickable.start()
+		walking_enemy_base.raycastDamages = true
+		state = states["shell_moving"]
+		if (get_tree().get_first_node_in_group("player").position.x < position.x):
+			walking_enemy_base.direction = 1
+		else:
+			walking_enemy_base.direction = -1
 
 func touched():
 	if (state == states["wander"]):
@@ -56,7 +63,8 @@ func touched():
 func squished():
 	if (state == states["shell"]):
 		touched()
-	if (!squishable_timer): # need fix
+	else: # need fix
+		time_till_kickable.start()
 		velocity.x = 0
 		walking_enemy_base.raycastDamages = false
 		state = states["shell"]
@@ -70,7 +78,6 @@ func death():
 	death_timer.start()
 	
 func _physics_process(delta: float) -> void:
-	print (state)
 	if (!dead):
 		if not is_on_floor():
 			velocity += get_gravity() * delta
@@ -83,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _process(delta):
-	
+	debug_label.text = "state: " + str(state) + "\nraycastDamges: " + str(walking_enemy_base.raycastDamages)
 	# player kicks shell if they start moving while still inside the shell
 	if (entered_bodies.has(get_tree().get_first_node_in_group("player"))):
 		if (abs(get_tree().get_first_node_in_group("player").velocity.x) > 0.01):

@@ -5,4 +5,5 @@ extends Area2D
 
 func _on_body_entered(body):
 	if (body.is_in_group("player")):
-		get_parent().emit_signal("squish")
+		if (!body.is_on_floor()):
+			get_parent().emit_signal("squish")

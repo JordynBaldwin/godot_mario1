@@ -40,10 +40,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7wl"]
-size = Vector2(20, 18.0938)
+size = Vector2(24, 18.1875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggyc0"]
-size = Vector2(16, 6)
+size = Vector2(20, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tvfy"]
 size = Vector2(28, 10)
@@ -63,7 +63,6 @@ autoplay = "walk"
 position = Vector2(0, 23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WalkingEnemyBase"]
-position = Vector2(0, 0.046875)
 shape = SubResource("RectangleShape2D_sd7wl")
 
 [node name="walking_enemy_top" parent="." instance=ExtResource("4_lggwn")]
@@ -84,7 +83,7 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="DebugLabel" type="Label" parent="."]
+[node name="StateLabel" type="Label" parent="."]
 offset_left = -40.0
 offset_top = -60.0
 offset_right = 8.0

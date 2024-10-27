@@ -40,10 +40,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7wl"]
-size = Vector2(20, 18.0938)
+size = Vector2(28, 18.1875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggyc0"]
-size = Vector2(16, 6)
+size = Vector2(22, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tvfy"]
 size = Vector2(28, 10)
@@ -63,13 +63,12 @@ autoplay = "walk"
 position = Vector2(0, 23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WalkingEnemyBase"]
-position = Vector2(0, 0.046875)
 shape = SubResource("RectangleShape2D_sd7wl")
 
 [node name="walking_enemy_top" parent="." instance=ExtResource("4_lggwn")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walking_enemy_top"]
-position = Vector2(0, 11)
+position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_ggyc0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
