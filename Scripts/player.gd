@@ -1,40 +1,79 @@
 extends CharacterBody2D
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -800.0
+const MAX_FALL_SPEED = 900
 var g_mult = 1.0
 var big_jump = false
+
+var state = {
+	"size": 0,
+	"facing": "right",
+	"isJumping": false,
+	"isRunning": false,
+	"isInAir": false,
+	"isStarPower": false
+}
+
+@onready var sprite = $AnimatedSprite2D
 
 func damage():
 	queue_free()
 
+func bounce():
+	velocity.y = JUMP_VELOCITY
+
+func changeState(field, value):
+	state[field] = value
+	print(state)
+	updateAnimation()
+
+func updateAnimation():
+	# Verify correct facing
+	if state.facing == "left":
+		if not sprite.flip_h:
+			sprite.flip_h = true
+	elif sprite.flip_h:
+		sprite.flip_h = false
+	
+	if state.isInAir: # Always use jumping frame when in air
+		sprite.play("small_jump")
+	else:
+		sprite.play("small_stand")
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		if velocity.y < 0 and big_jump:
-			if g_mult <= 1:
-				velocity += get_gravity() * delta * g_mult
-			else:
-				velocity += get_gravity() * delta
-			g_mult = g_mult * 1.5
+		if not state.isInAir: # Ensure isInAir is true while not on floor
+			changeState("isInAir", true)
+		if velocity.y < 0 and state.isJumping:
+			velocity += get_gravity() * delta * min(g_mult, 1)
+			if g_mult < 1:
+				g_mult = g_mult * 1.5
 		elif velocity.y == 0:
 			velocity.y -= JUMP_VELOCITY * .2
-		elif velocity.y < 900:
-			velocity += get_gravity() * delta * 2.5
-		elif velocity.y > 900:
-			velocity.y = 900
+		elif velocity.y < MAX_FALL_SPEED:
+			velocity += get_gravity() * delta
+			if velocity.y > MAX_FALL_SPEED:
+				velocity.y = MAX_FALL_SPEED
+	elif state.isInAir: # Ensure isInAir is false while on floor
+			changeState("isInAir", false)
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		bounce()
 		g_mult = .3
-		big_jump = true
+		changeState("isJumping", true)
 	if Input.is_action_just_released("ui_accept"):
-		big_jump = false
+		changeState("isJumping", false)
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
+	if Input.is_action_just_pressed("ui_left"):
+		changeState("facing", "left")
+	if Input.is_action_just_pressed("ui_right"):
+		changeState("facing", "right")
+	
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED

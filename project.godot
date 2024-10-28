@@ -21,6 +21,10 @@ config/icon="res://icon.svg"
 2d_physics/layer_2="Dynamic"
 2d_physics/layer_3="Hazard"
 
+[physics]
+
+2d/default_gravity=1980.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

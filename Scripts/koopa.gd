@@ -71,7 +71,7 @@ func death():
 	death_timer.start()
 	
 func _physics_process(delta: float) -> void:
-	print (state)
+	#print (state)
 	if (!dead):
 		if not is_on_floor():
 			velocity += get_gravity() * delta

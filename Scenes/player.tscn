@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://deox6mc4bsap4"]
+[gd_scene load_steps=12 format=3 uid="uid://deox6mc4bsap4"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_asxml"]
 [ext_resource type="Texture2D" uid="uid://byilki7xr8h7" path="res://Assets/spritesheets/mario.png" id="1_ue5g6"]
@@ -6,6 +6,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_p75pe"]
 atlas = ExtResource("1_ue5g6")
 region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mupit"]
+atlas = ExtResource("1_ue5g6")
+region = Rect2(32, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ff0mf"]
 atlas = ExtResource("1_ue5g6")
@@ -35,6 +39,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mupit")
+}],
+"loop": true,
+"name": &"small_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ff0mf")
 }, {
 "duration": 1.0,
@@ -56,16 +68,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_qmrng"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3ojn"]
 size = Vector2(12, 15)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(2, 2)
 collision_layer = 16
 script = ExtResource("1_asxml")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dda7s")
 animation = &"small_stand"
+script = SubResource("GDScript_qmrng")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8.5)
