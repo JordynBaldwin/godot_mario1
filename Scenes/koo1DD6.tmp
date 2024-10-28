@@ -3,14 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/koopa.gd" id="1_sw7c2"]
 [ext_resource type="Texture2D" uid="uid://b2il0x52t8soq" path="res://Assets/spritesheets/koopa.png" id="2_ohgvi"]
 [ext_resource type="PackedScene" uid="uid://b7hiie0nja4xg" path="res://Scenes/walking_enemy_base.tscn" id="3_qkfq0"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mpsxb"]
-atlas = ExtResource("2_ohgvi")
-region = Rect2(0, 32, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yuvn2"]
-atlas = ExtResource("2_ohgvi")
-region = Rect2(16, 32, 16, 32)
+[ext_resource type="PackedScene" uid="uid://b0sjei8tv6hrr" path="res://Scenes/walking_enemy_top.tscn" id="4_lggwn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5dp2"]
 atlas = ExtResource("2_ohgvi")
@@ -26,17 +19,6 @@ region = Rect2(16, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_myr0k"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mpsxb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yuvn2")
-}],
-"loop": true,
-"name": &"rekoop",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j5dp2")
@@ -58,7 +40,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7wl"]
-size = Vector2(20, 18.0938)
+size = Vector2(28, 18.1875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggyc0"]
+size = Vector2(22, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tvfy"]
 size = Vector2(28, 10)
@@ -78,8 +63,13 @@ autoplay = "walk"
 position = Vector2(0, 23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WalkingEnemyBase"]
-position = Vector2(0, 0.046875)
 shape = SubResource("RectangleShape2D_sd7wl")
+
+[node name="walking_enemy_top" parent="." instance=ExtResource("4_lggwn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walking_enemy_top"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_ggyc0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 27)
@@ -90,7 +80,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="TimeTillKickable" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.5
 one_shot = true
 
 [node name="DebugLabel" type="Label" parent="."]
@@ -100,9 +90,4 @@ offset_right = 8.0
 offset_bottom = -37.0
 text = "state: "
 
-[node name="RekoopTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
-[connection signal="timeout" from="RekoopTimer" to="." method="_on_rekoop_timer_timeout"]

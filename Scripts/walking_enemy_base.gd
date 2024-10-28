@@ -1,3 +1,6 @@
+# use one of these on a walking enemy, add the collision shape as a child of walking base
+# in enemy, this will be used to emit the touch signal
+
 extends Area2D
 
 var direction = 1
@@ -8,12 +11,12 @@ var raycastDamages = false
 
 func _on_body_entered(body):
 	if (body.is_in_group("player")) || (body.is_in_group("enemy")):
-		get_parent().walking_body_enter(body)
-		
-		if (body.is_on_floor()):
-			get_parent().emit_signal("touch")
-		else:
+		if (body.is_in_group("player") && body.velocity.y > 0):
+			get_parent().walking_body_enter(body)
 			get_parent().emit_signal("squish")
+		else:
+			get_parent().emit_signal("touch")
+		
 	
 func _on_body_exited(body):
 	get_parent().walking_body_exit(body)
