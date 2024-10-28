@@ -13,7 +13,10 @@ func _on_body_entered(body):
 	if (body.is_in_group("player")) || (body.is_in_group("enemy")):
 		get_parent().walking_body_enter(body)
 		
-		get_parent().emit_signal("touch")
+		if (body.velocity.y > 0):
+			get_parent().emit_signal("squish")
+		else:
+			get_parent().emit_signal("touch")
 		
 	
 func _on_body_exited(body):

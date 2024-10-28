@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyotb7fciumjb"]
+[gd_scene load_steps=10 format=3 uid="uid://cyotb7fciumjb"]
 
 [ext_resource type="Script" path="res://Scripts/koopa.gd" id="1_sw7c2"]
 [ext_resource type="Texture2D" uid="uid://b2il0x52t8soq" path="res://Assets/spritesheets/koopa.png" id="2_ohgvi"]
 [ext_resource type="PackedScene" uid="uid://b7hiie0nja4xg" path="res://Scenes/walking_enemy_base.tscn" id="3_qkfq0"]
-[ext_resource type="PackedScene" uid="uid://b0sjei8tv6hrr" path="res://Scenes/walking_enemy_top.tscn" id="4_lggwn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5dp2"]
 atlas = ExtResource("2_ohgvi")
@@ -42,9 +41,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7wl"]
 size = Vector2(20, 18.0938)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggyc0"]
-size = Vector2(16, 6)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tvfy"]
 size = Vector2(28, 10)
 
@@ -65,12 +61,6 @@ position = Vector2(0, 23)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WalkingEnemyBase"]
 position = Vector2(0, 0.046875)
 shape = SubResource("RectangleShape2D_sd7wl")
-
-[node name="walking_enemy_top" parent="." instance=ExtResource("4_lggwn")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="walking_enemy_top"]
-position = Vector2(0, 11)
-shape = SubResource("RectangleShape2D_ggyc0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 27)
