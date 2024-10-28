@@ -12,10 +12,15 @@ var raycastDamages = false
 func _on_body_entered(body):
 	if (body.is_in_group("player")) || (body.is_in_group("enemy")):
 		if (body.is_in_group("player") && body.velocity.y > 0):
+			print(str(body) + " squish " + str(body.velocity.y))
+			body.bounce()
 			get_parent().walking_body_enter(body)
 			get_parent().emit_signal("squish")
+			
 		else:
+			print(str(body) + " touch " + str(body.velocity.y))
 			get_parent().emit_signal("touch")
+			
 		
 	
 func _on_body_exited(body):

@@ -110,3 +110,9 @@ script = SubResource("GDScript_qmrng")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_i3ojn")
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = 7.0
+offset_top = -24.5
+offset_right = 47.0
+offset_bottom = -1.5
