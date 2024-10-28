@@ -24,7 +24,7 @@ func damage():
 	queue_free()
 
 func damagePlayer():
-	get_tree().get_first_node_in_group("player").queue_free()
+	get_tree().get_first_node_in_group("player").damage()
 
 func death():
 	dead = true

@@ -18,15 +18,14 @@ var state = {
 @onready var sprite = $AnimatedSprite2D
 
 func damage():
-	queue_free()
+	set_physics_process(false)
+	sprite.play("small_die")
 
 func bounce():
 	velocity.y = JUMP_VELOCITY
 
 func changeState(field, value):
 	state[field] = value
-	print(state)
-	updateAnimation()
 
 func updateAnimation():
 	# Verify correct facing
@@ -38,8 +37,10 @@ func updateAnimation():
 	
 	if state.isInAir: # Always use jumping frame when in air
 		sprite.play("small_jump")
-	else:
+	elif velocity.x == 0:
 		sprite.play("small_stand")
+	else:
+		sprite.play("small_run")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -58,7 +59,7 @@ func _physics_process(delta: float) -> void:
 				velocity.y = MAX_FALL_SPEED
 	elif state.isInAir: # Ensure isInAir is false while on floor
 			changeState("isInAir", false)
-
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		bounce()
@@ -66,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		changeState("isJumping", true)
 	if Input.is_action_just_released("ui_accept"):
 		changeState("isJumping", false)
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if Input.is_action_just_pressed("ui_left"):
@@ -79,5 +80,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	updateAnimation()
+	
 	move_and_slide()
