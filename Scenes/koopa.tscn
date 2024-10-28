@@ -1,8 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyotb7fciumjb"]
+[gd_scene load_steps=12 format=3 uid="uid://cyotb7fciumjb"]
 
 [ext_resource type="Script" path="res://Scripts/koopa.gd" id="1_sw7c2"]
 [ext_resource type="Texture2D" uid="uid://b2il0x52t8soq" path="res://Assets/spritesheets/koopa.png" id="2_ohgvi"]
 [ext_resource type="PackedScene" uid="uid://b7hiie0nja4xg" path="res://Scenes/walking_enemy_base.tscn" id="3_qkfq0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpsxb"]
+atlas = ExtResource("2_ohgvi")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuvn2"]
+atlas = ExtResource("2_ohgvi")
+region = Rect2(16, 32, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5dp2"]
 atlas = ExtResource("2_ohgvi")
@@ -18,6 +26,17 @@ region = Rect2(16, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_myr0k"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpsxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuvn2")
+}],
+"loop": true,
+"name": &"rekoop",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j5dp2")
@@ -71,7 +90,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="TimeTillKickable" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 one_shot = true
 
 [node name="DebugLabel" type="Label" parent="."]
@@ -81,4 +100,9 @@ offset_right = 8.0
 offset_bottom = -37.0
 text = "state: "
 
+[node name="RekoopTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="RekoopTimer" to="." method="_on_rekoop_timer_timeout"]
