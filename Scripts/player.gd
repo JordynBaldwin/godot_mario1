@@ -18,6 +18,9 @@ var state = {
 @onready var sprite = $AnimatedSprite2D
 @onready var debug_label = $DebugLabel
 
+func _ready():
+	Global.player = self
+
 func damage():
 	set_physics_process(false)
 	print("velocity on damage: " + str(velocity.y))
