@@ -98,19 +98,19 @@ tile_set = SubResource("TileSet_gy6r8")
 collision_enabled = false
 
 [node name="Goomba3" parent="." instance=ExtResource("2_faknc")]
-position = Vector2(501, 545)
+position = Vector2(448, 558)
 
 [node name="Goomba4" parent="." instance=ExtResource("2_faknc")]
-position = Vector2(458, 545)
+position = Vector2(413, 556)
 
 [node name="Goomba5" parent="." instance=ExtResource("2_faknc")]
-position = Vector2(416, 547)
+position = Vector2(377, 558)
 
 [node name="Goomba6" parent="." instance=ExtResource("2_faknc")]
-position = Vector2(371, 551)
+position = Vector2(340, 557)
 
 [node name="Goomba2" parent="." instance=ExtResource("2_faknc")]
-position = Vector2(588, 542)
+position = Vector2(624, 553)
 
 [node name="Koopa" parent="." instance=ExtResource("3_7ng7e")]
-position = Vector2(290, 535)
+position = Vector2(271, 541)

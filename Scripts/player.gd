@@ -16,9 +16,12 @@ var state = {
 }
 
 @onready var sprite = $AnimatedSprite2D
+@onready var collider = $Area2D
+func _ready():
+	collider.connect("area_entered", bounce)
 
 func damage():
-	set_physics_process(false)
+	#set_physics_process(false)
 	sprite.play("small_die")
 
 func bounce():

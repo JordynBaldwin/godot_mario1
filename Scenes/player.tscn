@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://deox6mc4bsap4"]
+[gd_scene load_steps=14 format=3 uid="uid://deox6mc4bsap4"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_asxml"]
 [ext_resource type="Texture2D" uid="uid://byilki7xr8h7" path="res://Assets/spritesheets/mario.png" id="1_ue5g6"]
@@ -97,6 +97,9 @@ func _process(_delta: float) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3ojn"]
 size = Vector2(12, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w020n"]
+size = Vector2(12, 8.5)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(2, 2)
 collision_layer = 16
@@ -104,9 +107,15 @@ script = ExtResource("1_asxml")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dda7s")
-animation = &"small_die"
+animation = &"small_stand"
 script = SubResource("GDScript_qmrng")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_i3ojn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 14.75)
+shape = SubResource("RectangleShape2D_w020n")

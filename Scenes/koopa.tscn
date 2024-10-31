@@ -58,10 +58,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd7wl"]
-size = Vector2(20, 18.0938)
+size = Vector2(28, 28.0938)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tvfy"]
-size = Vector2(28, 10)
+size = Vector2(32, 10)
 
 [node name="Koopa" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
@@ -78,7 +78,7 @@ autoplay = "walk"
 position = Vector2(0, 23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WalkingEnemyBase"]
-position = Vector2(0, 0.046875)
+position = Vector2(0, -4.95311)
 shape = SubResource("RectangleShape2D_sd7wl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
