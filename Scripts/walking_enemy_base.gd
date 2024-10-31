@@ -3,7 +3,7 @@
 
 extends Area2D
 
-var direction = 1
+var direction = -1
 var raycastDamages = false
 
 @onready var raycast_right = $RaycastRight

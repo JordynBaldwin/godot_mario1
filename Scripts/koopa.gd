@@ -31,6 +31,7 @@ signal touch
 signal squish
 
 func _ready():
+	sprite.flip_h = true
 	touch.connect(touched)
 	squish.connect(squished)
 	
