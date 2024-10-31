@@ -17,10 +17,6 @@ func loadLevel(levelName : String, spawnLocation = "Spawn"):
 	var level_path := "res://Scenes/Levels/%s.tscn" % levelName
 	var level_resource := load(level_path)
 	if (level_resource):
-		# Disable warping for a tiny amount of time
-		# (can likely remove when warping requires player input)
-		Global.player.position = Vector2(-100.0, 100.0)
-		
 		level_instance = level_resource.instantiate()
 		main_2d.add_child(level_instance)
 		
