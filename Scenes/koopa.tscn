@@ -94,6 +94,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = -40.0
 offset_top = -60.0
 offset_right = 8.0

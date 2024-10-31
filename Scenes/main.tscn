@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://do8d7cft4187"]
 
-[ext_resource type="Script" path="res://Scenes/main.gd" id="1_suy56"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_suy56"]
 [ext_resource type="PackedScene" uid="uid://deox6mc4bsap4" path="res://Scenes/player.tscn" id="2_p63xi"]
 
 [node name="MainScene" type="Node2D"]
@@ -10,3 +10,9 @@ script = ExtResource("1_suy56")
 
 [node name="Player" parent="Main2D" instance=ExtResource("2_p63xi")]
 position = Vector2(32, 32)
+
+[node name="Camera2D" type="Camera2D" parent="Main2D/Player"]
+scale = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = 0
+limit_bottom = 640

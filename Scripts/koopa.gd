@@ -124,7 +124,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _process(delta):
-	debug_label.text = "state: " + str(state) + "\nraycastDamges: " + str(walking_enemy_base.raycastDamages)
+	#debug_label.text = "state: " + str(state) + "\nraycastDamges: " + str(walking_enemy_base.raycastDamages)
 	# player kicks shell if they start moving while still inside the shell
 	if (playerInArea()):
 		if (abs(get_tree().get_first_node_in_group("player").velocity.x) > 0.01):

@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/Global.gd"
 
+[display]
+
+window/size/viewport_width=544
+window/size/viewport_height=416
+window/size/resizable=false
+
 [layer_names]
 
 2d_physics/layer_1="Static"
