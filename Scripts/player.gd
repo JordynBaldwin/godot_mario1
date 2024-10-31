@@ -16,12 +16,15 @@ var state = {
 }
 
 @onready var sprite = $AnimatedSprite2D
-@onready var collider = $Area2D
+@onready var debug_label = $DebugLabel
+
 func _ready():
+	Global.player = self
 	collider.connect("area_entered", bounce)
 
 func damage():
-	#set_physics_process(false)
+	set_physics_process(false)
+	print("velocity on damage: " + str(velocity.y))
 	sprite.play("small_die")
 
 func bounce():
@@ -44,6 +47,9 @@ func updateAnimation():
 		sprite.play("small_stand")
 	else:
 		sprite.play("small_run")
+
+func _process(delta):
+	debug_label.text = str(int(velocity.y))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

@@ -15,6 +15,16 @@ run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://Scripts/Global.gd"
+
+[display]
+
+window/size/viewport_width=544
+window/size/viewport_height=416
+window/size/resizable=false
+
 [layer_names]
 
 2d_physics/layer_1="Static"

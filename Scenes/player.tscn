@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://deox6mc4bsap4"]
+[gd_scene load_steps=13 format=3 uid="uid://deox6mc4bsap4"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_asxml"]
 [ext_resource type="Texture2D" uid="uid://byilki7xr8h7" path="res://Assets/spritesheets/mario.png" id="1_ue5g6"]
@@ -101,6 +101,7 @@ size = Vector2(12, 15)
 size = Vector2(12, 8.5)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 2
 scale = Vector2(2, 2)
 collision_layer = 16
 script = ExtResource("1_asxml")
@@ -119,3 +120,9 @@ shape = SubResource("RectangleShape2D_i3ojn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 14.75)
 shape = SubResource("RectangleShape2D_w020n")
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = 7.0
+offset_top = -24.5
+offset_right = 47.0
+offset_bottom = -1.5
