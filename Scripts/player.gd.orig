@@ -16,16 +16,23 @@ var state = {
 }
 
 @onready var sprite = $AnimatedSprite2D
-@onready var debug_label = $DebugLabel
+<<<<<<< HEAD
 @onready var collider = $Area2D
+func _ready():
+	collider.connect("area_entered", bounce)
+
+func damage():
+	#set_physics_process(false)
+=======
+@onready var debug_label = $DebugLabel
 
 func _ready():
 	Global.player = self
-	collider.connect("area_entered", bounce)
 
 func damage():
 	set_physics_process(false)
 	print("velocity on damage: " + str(velocity.y))
+>>>>>>> c4537283754c2438ea11700ac8dd65ac72d7e146
 	sprite.play("small_die")
 
 func bounce():
