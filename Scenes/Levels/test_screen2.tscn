@@ -129,3 +129,17 @@ levelName = "test_screen"
 
 [node name="Spawn" type="Marker2D" parent="SpawnLocations"]
 position = Vector2(1008, 544)
+
+[node name="CameraBoundaries" type="Node" parent="."]
+
+[node name="left" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(-32, 320)
+
+[node name="right" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(1184, 320)
+
+[node name="top" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(576, -32)
+
+[node name="bottom" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(576, 624)

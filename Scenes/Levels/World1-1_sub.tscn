@@ -109,3 +109,17 @@ spawnLocation = "WarpFromSub"
 
 [node name="Spawn" type="Marker2D" parent="SpawnLocations"]
 position = Vector2(80, 32)
+
+[node name="CameraBoundaries" type="Node" parent="."]
+
+[node name="left" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(0, 224)
+
+[node name="right" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(544, 208)
+
+[node name="top" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(240, 0)
+
+[node name="bottom" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(264, 416)

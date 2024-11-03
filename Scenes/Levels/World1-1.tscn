@@ -164,3 +164,17 @@ position = Vector2(128, 544)
 
 [node name="WarpFromSub" type="Marker2D" parent="SpawnLocations"]
 position = Vector2(5248, 480)
+
+[node name="CameraBoundaries" type="Node" parent="."]
+
+[node name="left" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(0, 320)
+
+[node name="right" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(7168, 384)
+
+[node name="top" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(576, 128)
+
+[node name="bottom" type="Marker2D" parent="CameraBoundaries"]
+position = Vector2(576, 624)
