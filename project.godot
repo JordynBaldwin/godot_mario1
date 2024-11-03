@@ -24,6 +24,7 @@ Global="*res://Scripts/Global.gd"
 window/size/viewport_width=544
 window/size/viewport_height=416
 window/size/resizable=false
+window/stretch/mode="viewport"
 
 [layer_names]
 

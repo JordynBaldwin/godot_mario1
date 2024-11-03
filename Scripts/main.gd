@@ -37,8 +37,8 @@ func loadLevel(levelName : String, spawnLocation = "Spawn"):
 		Global.player.position = spawn_node.position
 		
 		# Set camera limits
-		var cam_l_bound = getCamBound("left").x
-		var cam_t_bound = getCamBound("top").y
-		var cam_r_bound = getCamBound("right").x
-		var cam_b_bound = getCamBound("bottom").y
-		Global.camera.updateLimits(cam_l_bound, cam_t_bound, cam_r_bound, cam_b_bound)
+		camBounds["left"] = getCamBound("left").x
+		camBounds["top"] = getCamBound("top").y
+		camBounds["right"] = getCamBound("right").x
+		camBounds["bottom"] = getCamBound("bottom").y
+		Global.camera.updateLimits(camBounds["left"], camBounds["top"], camBounds["right"], camBounds["bottom"])
