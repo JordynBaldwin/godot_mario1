@@ -7,6 +7,7 @@ extends Area2D
 @export_enum("enterPipeRight", "enterPipeLeft", "enterPipeUp", "enterPipeDown") var transitionAnimation : String
 
 @onready var time_till_load = $TimeTillLoad
+var playerInZone = false
 
 # Move player to proper position for pipe animation
 func tweenPlayerAnimation():
@@ -17,16 +18,33 @@ func tweenPlayerAnimation():
 	else:
 		var playerYPos = Global.player.position.y
 		tween.tween_property(Global.player, "position", Vector2(position.x, playerYPos), 0.25)
-			
+		
+func warp():
+	Global.player.animation_player.play(transitionAnimation)
+	Global.player.set_physics_process(false)
+	
+	tweenPlayerAnimation()
+	
+	time_till_load.start(Global.player.animation_player.current_animation_length)
+
 func _on_body_entered(body):
 	if (body == Global.player):
-		Global.player.animation_player.play(transitionAnimation)
-		Global.player.set_physics_process(false)
-		
-		tweenPlayerAnimation()
-		
-		time_till_load.start(Global.player.animation_player.current_animation_length)
+		playerInZone = true
 
+func _on_body_exited(body):
+	if (body == Global.player):
+		playerInZone = false
+
+func _process(delta):
+	if (playerInZone && Global.player.is_on_floor()):
+		if (Input.is_action_pressed("ui_right") && transitionAnimation == "enterPipeRight"):
+			warp()
+		if (Input.is_action_pressed("ui_left") && transitionAnimation == "enterPipeLeft"):
+			warp()
+		if (Input.is_action_pressed("ui_up") && transitionAnimation == "enterPipeUp"):
+			warp()
+		if (Input.is_action_pressed("ui_down") && transitionAnimation == "enterPipeDown"):
+			warp()
 
 func _on_time_till_load_timeout():
 	Global.main_scene.loadLevel(levelName, spawnLocation)
