@@ -192,7 +192,7 @@ script = ExtResource("1_asxml")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dda7s")
-animation = &"small_stand"
+animation = &"big_stand"
 script = SubResource("GDScript_qmrng")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -215,3 +215,8 @@ offset_bottom = -1.5
 libraries = {
 "": SubResource("AnimationLibrary_b2ccv")
 }
+
+[node name="ActivationTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ActivationTimer" to="." method="_on_activation_timer_timeout"]

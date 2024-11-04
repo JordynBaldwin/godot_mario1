@@ -130,6 +130,7 @@ transitionAnimation = "enterPipeRight"
 position = Vector2(224, 480)
 levelName = "test_screen2"
 transitionAnimation = "enterPipeDown"
+transitionOutAnimation = "enterPipeRight"
 
 [node name="SpawnLocations" type="Node" parent="."]
 

@@ -105,11 +105,15 @@ rotation = -1.5708
 levelName = "World1-1"
 spawnLocation = "WarpFromSub"
 transitionAnimation = "enterPipeRight"
+transitionOutAnimation = "enterPipeDown"
 
 [node name="SpawnLocations" type="Node" parent="."]
 
 [node name="Spawn" type="Marker2D" parent="SpawnLocations"]
 position = Vector2(80, 32)
+
+[node name="WarpFromOverworld" type="Marker2D" parent="SpawnLocations"]
+position = Vector2(400, 352)
 
 [node name="CameraBoundaries" type="Node" parent="."]
 

@@ -158,6 +158,13 @@ position = Vector2(1856, 448)
 levelName = "World1-1_sub"
 transitionAnimation = "enterPipeDown"
 
+[node name="LevelTransition" parent="Warps" instance=ExtResource("4_o13qk")]
+position = Vector2(5248, 512)
+levelName = "World1-1_sub"
+spawnLocation = "WarpFromOverworld"
+transitionAnimation = "enterPipeDown"
+transitionOutAnimation = "enterPipeRight"
+
 [node name="SpawnLocations" type="Node" parent="."]
 
 [node name="Spawn" type="Marker2D" parent="SpawnLocations"]

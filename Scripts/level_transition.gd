@@ -5,6 +5,7 @@ extends Area2D
 @export_placeholder("Level name...") var levelName : String
 @export_placeholder("Warp Node Name...") var spawnLocation = "Spawn"
 @export_enum("enterPipeRight", "enterPipeLeft", "enterPipeUp", "enterPipeDown") var transitionAnimation : String
+@export_enum("enterPipeRight", "enterPipeLeft", "enterPipeUp", "enterPipeDown") var transitionOutAnimation := "none"
 
 @onready var time_till_load = $TimeTillLoad
 var playerInZone = false
@@ -50,4 +51,8 @@ func _process(delta):
 
 func _on_time_till_load_timeout():
 	Global.main_scene.loadLevel(levelName, spawnLocation)
-	Global.player.set_physics_process(true)
+	if (transitionOutAnimation != "none"):
+		Global.player.animation_player.play_backwards(transitionOutAnimation)
+		Global.player.activation_timer.start()
+	else:
+		Global.player.set_physics_process(true)
