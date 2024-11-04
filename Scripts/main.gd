@@ -36,6 +36,9 @@ func loadLevel(levelName : String, spawnLocation = "Spawn"):
 		var spawn_node = level_instance.get_node(spawn_loc_path)
 		Global.player.position = spawn_node.position
 		
+		# Reset player animations
+		Global.player.animation_player.play("RESET")
+		
 		# Set camera limits
 		camBounds["left"] = getCamBound("left").x
 		camBounds["top"] = getCamBound("top").y

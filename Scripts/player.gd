@@ -18,6 +18,7 @@ var state = {
 @onready var sprite = $AnimatedSprite2D
 @onready var debug_label = $DebugLabel
 @onready var collider = $Area2D
+@onready var animation_player = $AnimationPlayer
 
 func _ready():
 	Global.player = self

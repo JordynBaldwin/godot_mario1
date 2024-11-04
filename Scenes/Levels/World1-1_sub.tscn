@@ -104,6 +104,7 @@ position = Vector2(416, 352)
 rotation = -1.5708
 levelName = "World1-1"
 spawnLocation = "WarpFromSub"
+transitionAnimation = "enterPipeRight"
 
 [node name="SpawnLocations" type="Node" parent="."]
 

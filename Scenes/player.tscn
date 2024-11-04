@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://deox6mc4bsap4"]
+[gd_scene load_steps=20 format=3 uid="uid://deox6mc4bsap4"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_asxml"]
 [ext_resource type="Texture2D" uid="uid://byilki7xr8h7" path="res://Assets/spritesheets/mario.png" id="1_ue5g6"]
@@ -100,6 +100,90 @@ size = Vector2(12, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w020n"]
 size = Vector2(12, 8.5)
 
+[sub_resource type="Animation" id="Animation_e2001"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mhtui"]
+resource_name = "enterPipeDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 25)]
+}
+
+[sub_resource type="Animation" id="Animation_7jqm2"]
+resource_name = "enterPipeUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -25)]
+}
+
+[sub_resource type="Animation" id="Animation_0xam2"]
+resource_name = "enterPipeRight"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(25, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cq332"]
+resource_name = "enterPipeLeft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-25, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2ccv"]
+_data = {
+"RESET": SubResource("Animation_e2001"),
+"enterPipeDown": SubResource("Animation_mhtui"),
+"enterPipeLeft": SubResource("Animation_cq332"),
+"enterPipeRight": SubResource("Animation_0xam2"),
+"enterPipeUp": SubResource("Animation_7jqm2")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 2
 scale = Vector2(2, 2)
@@ -126,3 +210,8 @@ offset_left = 7.0
 offset_top = -24.5
 offset_right = 47.0
 offset_bottom = -1.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b2ccv")
+}

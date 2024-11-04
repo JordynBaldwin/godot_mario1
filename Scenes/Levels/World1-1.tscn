@@ -156,6 +156,7 @@ position = Vector2(3440, 544)
 [node name="WarpToSubworld" parent="Warps" instance=ExtResource("4_o13qk")]
 position = Vector2(1856, 448)
 levelName = "World1-1_sub"
+transitionAnimation = "enterPipeDown"
 
 [node name="SpawnLocations" type="Node" parent="."]
 

@@ -124,10 +124,12 @@ position = Vector2(290, 535)
 position = Vector2(1024, 544)
 rotation = -1.57079
 levelName = "World1-1"
+transitionAnimation = "enterPipeRight"
 
 [node name="WarpToTestScreen2" parent="Warps" instance=ExtResource("4_ol5js")]
 position = Vector2(224, 480)
 levelName = "test_screen2"
+transitionAnimation = "enterPipeDown"
 
 [node name="SpawnLocations" type="Node" parent="."]
 

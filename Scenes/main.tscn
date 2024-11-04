@@ -1,16 +1,65 @@
 [gd_scene load_steps=4 format=3 uid="uid://do8d7cft4187"]
 
-[ext_resource type="Script" path="res://Scripts/main.gd" id="1_suy56"]
 [ext_resource type="PackedScene" uid="uid://deox6mc4bsap4" path="res://Scenes/player.tscn" id="2_p63xi"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_6v4xu"]
 
+[sub_resource type="GDScript" id="GDScript_exbp0"]
+script/source = "extends Node2D
+
+@onready var main_2d = $Main2D
+var level_instance
+var camBounds = {
+	\"left\" : 0,
+	\"right\" : 544,
+	\"top\" : 0,
+	\"bottom\" : 416
+}
+
+func _ready():
+	Global.main_scene = self
+	loadLevel(\"test_screen\")
+	
+func getCamBound(direction_name : String):
+	var camera_limits_path = \"CameraBoundaries/%s\" % direction_name
+	var camera_limits_node = level_instance.get_node(camera_limits_path)
+	return camera_limits_node.position
+
+func unloadLevel():
+	if (is_instance_valid(level_instance)):
+		level_instance.queue_free()
+	level_instance = null
+	
+func loadLevel(levelName : String, spawnLocation = \"Spawn\"):
+	unloadLevel()
+	var level_path := \"res://Scenes/Levels/%s.tscn\" % levelName
+	var level_resource := load(level_path)
+	if (level_resource):
+		level_instance = level_resource.instantiate()
+		main_2d.add_child(level_instance)
+		
+		# Set player location to proper spawn
+		var spawn_loc_path = \"SpawnLocations/%s\" % spawnLocation
+		var spawn_node = level_instance.get_node(spawn_loc_path)
+		Global.player.position = spawn_node.position
+		
+		# Reset player animations
+		Global.player.animation_player.play(\"RESET\")
+		
+		# Set camera limits
+		camBounds[\"left\"] = getCamBound(\"left\").x
+		camBounds[\"top\"] = getCamBound(\"top\").y
+		camBounds[\"right\"] = getCamBound(\"right\").x
+		camBounds[\"bottom\"] = getCamBound(\"bottom\").y
+		Global.camera.updateLimits(camBounds[\"left\"], camBounds[\"top\"], camBounds[\"right\"], camBounds[\"bottom\"])
+"
+
 [node name="MainScene" type="Node2D"]
-script = ExtResource("1_suy56")
+script = SubResource("GDScript_exbp0")
 
 [node name="Main2D" type="Node2D" parent="."]
 
 [node name="Player" parent="Main2D" instance=ExtResource("2_p63xi")]
-position = Vector2(32, 32)
+position = Vector2(29, 33)
 
 [node name="Camera2D" type="Camera2D" parent="Main2D/Player"]
 scale = Vector2(0.5, 0.5)

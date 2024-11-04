@@ -124,6 +124,7 @@ position = Vector2(290, 535)
 position = Vector2(1024, 416)
 rotation = -1.5708
 levelName = "test_screen"
+transitionAnimation = "enterPipeRight"
 
 [node name="SpawnLocations" type="Node" parent="."]
 
