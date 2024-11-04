@@ -8,6 +8,7 @@ extends Area2D
 
 @onready var time_till_load = $TimeTillLoad
 var playerInZone = false
+var canUseWarp = true
 
 # Move player to proper position for pipe animation
 func tweenPlayerAnimation():
@@ -20,6 +21,7 @@ func tweenPlayerAnimation():
 		tween.tween_property(Global.player, "position", Vector2(position.x, playerYPos), 0.25)
 		
 func warp():
+	canUseWarp = false
 	Global.player.animation_player.play(transitionAnimation)
 	Global.player.set_physics_process(false)
 	
@@ -36,7 +38,7 @@ func _on_body_exited(body):
 		playerInZone = false
 
 func _process(delta):
-	if (playerInZone && Global.player.is_on_floor() && !Global.player.animation_player.is_playing()):
+	if (playerInZone && Global.player.is_on_floor() && canUseWarp):
 		if (Input.is_action_pressed("ui_right") && transitionAnimation == "enterPipeRight"):
 			warp()
 		if (Input.is_action_pressed("ui_left") && transitionAnimation == "enterPipeLeft"):
