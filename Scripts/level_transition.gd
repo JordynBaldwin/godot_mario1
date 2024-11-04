@@ -8,17 +8,22 @@ extends Area2D
 
 @onready var time_till_load = $TimeTillLoad
 
+# Move player to proper position for pipe animation
+func tweenPlayerAnimation():
+	var tween = get_tree().create_tween()
+	if (transitionAnimation == "enterPipeRight") || (transitionAnimation == "enterPipeLeft"):
+			var playerXPos = Global.player.position.x
+			tween.tween_property(Global.player, "position", Vector2(playerXPos, position.y - 2), 0.25)
+	else:
+		var playerYPos = Global.player.position.y
+		tween.tween_property(Global.player, "position", Vector2(position.x, playerYPos), 0.25)
+			
 func _on_body_entered(body):
 	if (body == Global.player):
 		Global.player.animation_player.play(transitionAnimation)
 		Global.player.set_physics_process(false)
-		var tween = get_tree().create_tween()
-		if (transitionAnimation == "enterPipeRight") || (transitionAnimation == "enterPipeLeft"):
-			var playerXPos = Global.player.position.x
-			tween.tween_property(Global.player, "position", Vector2(playerXPos, position.y - 2), 0.25)
-		else:
-			var playerYPos = Global.player.position.y
-			tween.tween_property(Global.player, "position", Vector2(position.x, playerYPos), 0.25)
+		
+		tweenPlayerAnimation()
 		
 		time_till_load.start(Global.player.animation_player.current_animation_length)
 
