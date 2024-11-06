@@ -5,6 +5,7 @@ const JUMP_VELOCITY = -800.0
 const MAX_FALL_SPEED = 900
 var g_mult = 1.0
 var big_jump = false
+var warping = false
 
 var state = {
 	"size": 0,
@@ -19,6 +20,7 @@ var state = {
 @onready var debug_label = $DebugLabel
 @onready var collider = $Area2D
 @onready var animation_player = $AnimationPlayer
+@onready var activation_timer = $ActivationTimer
 
 func _ready():
 	Global.player = self
@@ -95,3 +97,7 @@ func _physics_process(delta: float) -> void:
 	updateAnimation()
 	
 	move_and_slide()
+
+
+func _on_activation_timer_timeout():
+	set_physics_process(true)
