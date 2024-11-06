@@ -41,7 +41,8 @@ func _on_body_exited(body):
 		playerInZone = false
 
 func _process(delta):
-	if (playerInZone && Global.player.is_on_floor() && canUseWarp):
+	var playerAnimating = Global.player.animation_player.is_playing()
+	if (playerInZone && Global.player.is_on_floor() && canUseWarp && !playerAnimating):
 		if (Input.is_action_pressed("ui_right") && transitionAnimation == "enterPipeRight"):
 			warp()
 		if (Input.is_action_pressed("ui_left") && transitionAnimation == "enterPipeLeft"):
