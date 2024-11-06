@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -800.0
+const JUMP_VELOCITY = -500.0
 const MAX_FALL_SPEED = 900
 var g_mult = 1.0
 var big_jump = false
@@ -54,6 +54,8 @@ func updateAnimation():
 
 func _process(delta):
 	debug_label.text = str(int(velocity.y))
+	debug_label.text += str('\nisJumping: ', state["isJumping"])
+	debug_label.text += str('\ng_mult: ', g_mult)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -61,9 +63,7 @@ func _physics_process(delta: float) -> void:
 		if not state.isInAir: # Ensure isInAir is true while not on floor
 			changeState("isInAir", true)
 		if velocity.y < 0 and state.isJumping:
-			velocity += get_gravity() * delta * min(g_mult, 1)
-			if g_mult < 1:
-				g_mult = g_mult * 1.5
+			velocity += get_gravity() * delta * g_mult
 		elif velocity.y == 0:
 			velocity.y -= JUMP_VELOCITY * .2
 		elif velocity.y < MAX_FALL_SPEED:
@@ -74,12 +74,14 @@ func _physics_process(delta: float) -> void:
 			changeState("isInAir", false)
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		bounce()
-		g_mult = .3
+	if Input.is_action_just_pressed("ui_accept"):
+		if is_on_floor():
+			bounce()
 		changeState("isJumping", true)
+		g_mult = .3
 	if Input.is_action_just_released("ui_accept"):
 		changeState("isJumping", false)
+		g_mult = 1
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
