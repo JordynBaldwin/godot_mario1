@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://neglnayvnf4c"]
+[gd_scene load_steps=6 format=4 uid="uid://neglnayvnf4c"]
 
 [ext_resource type="Texture2D" uid="uid://j8qtmvheiohr" path="res://Assets/tilesets/tileset.png" id="1_8t3uu"]
+[ext_resource type="Script" path="res://Scripts/world_1_1_sub.gd" id="1_mrnyr"]
 [ext_resource type="PackedScene" uid="uid://bygqe063exccy" path="res://Scenes/level_transition.tscn" id="2_d34bc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ay0mq"]
@@ -76,6 +77,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ay0mq")
 
 [node name="World1-1_sub" type="Node2D"]
+script = ExtResource("1_mrnyr")
 
 [node name="main_tilemap" type="TileMapLayer" parent="."]
 z_index = 2

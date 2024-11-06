@@ -16,6 +16,7 @@ func _on_body_entered(body):
 			body.bounce()
 			get_parent().walking_body_enter(body)
 			get_parent().emit_signal("squish")
+			Global.audio_manager.sfx_stomp.play()
 			
 		else:
 			print(str(body) + " touch " + str(body.velocity.y))

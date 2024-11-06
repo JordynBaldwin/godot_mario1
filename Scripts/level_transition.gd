@@ -22,6 +22,8 @@ func tweenPlayerAnimation():
 		tween.tween_property(Global.player, "position", Vector2(position.x, playerYPos), 0.25)
 		
 func warp():
+	Global.audio_manager.stopSound()
+	Global.audio_manager.sfx_pipe.play()
 	canUseWarp = false
 	Global.player.animation_player.play(transitionAnimation)
 	Global.player.set_physics_process(false)
@@ -50,7 +52,7 @@ func _process(delta):
 			warp()
 
 func _on_time_till_load_timeout():
-	Global.main_scene.loadLevel(levelName, spawnLocation)
+	Global.main_scene.loadLevel(levelName, spawnLocation, transitionOutAnimation != "none")
 	if (transitionOutAnimation != "none"):
 		Global.player.animation_player.play_backwards(transitionOutAnimation)
 		Global.player.activation_timer.start()

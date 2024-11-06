@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://do8d7cft4187"]
+[gd_scene load_steps=5 format=3 uid="uid://do8d7cft4187"]
 
+[ext_resource type="PackedScene" uid="uid://p35c3uda78ys" path="res://Scenes/audio_manager.tscn" id="1_uc4xy"]
 [ext_resource type="PackedScene" uid="uid://deox6mc4bsap4" path="res://Scenes/player.tscn" id="2_p63xi"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_6v4xu"]
 
@@ -29,7 +30,7 @@ func unloadLevel():
 		level_instance.queue_free()
 	level_instance = null
 	
-func loadLevel(levelName : String, spawnLocation = \"Spawn\"):
+func loadLevel(levelName : String, spawnLocation = \"Spawn\", playPipeSFX = false):
 	unloadLevel()
 	var level_path := \"res://Scenes/Levels/%s.tscn\" % levelName
 	var level_resource := load(level_path)
@@ -41,6 +42,10 @@ func loadLevel(levelName : String, spawnLocation = \"Spawn\"):
 		var spawn_loc_path = \"SpawnLocations/%s\" % spawnLocation
 		var spawn_node = level_instance.get_node(spawn_loc_path)
 		Global.player.position = spawn_node.position
+		
+		# Play pipe SFX
+		if (playPipeSFX):
+			Global.audio_manager.sfx_pipe.play()
 		
 		# Reset player animations
 		Global.player.animation_player.play(\"RESET\")
@@ -55,6 +60,14 @@ func loadLevel(levelName : String, spawnLocation = \"Spawn\"):
 
 [node name="MainScene" type="Node2D"]
 script = SubResource("GDScript_exbp0")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioManager" parent="Control" instance=ExtResource("1_uc4xy")]
 
 [node name="Main2D" type="Node2D" parent="."]
 

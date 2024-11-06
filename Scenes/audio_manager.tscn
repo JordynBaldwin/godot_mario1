@@ -1,0 +1,110 @@
+[gd_scene load_steps=22 format=3 uid="uid://p35c3uda78ys"]
+
+[ext_resource type="Script" path="res://Scripts/audio_manager.gd" id="1_qfdo6"]
+[ext_resource type="AudioStream" uid="uid://b6kr65bmvwqjb" path="res://Assets/music/Ground_Theme.mp3" id="2_7mk70"]
+[ext_resource type="AudioStream" uid="uid://cjdjd1rprr8cj" path="res://Assets/music/Underground_Theme.mp3" id="3_woy2d"]
+[ext_resource type="AudioStream" uid="uid://cgjtl1w2yn67x" path="res://Assets/SFX/smb_1-up.mp3" id="4_dsllv"]
+[ext_resource type="AudioStream" uid="uid://c2kn3yqx4n4hk" path="res://Assets/SFX/smb_pipe.mp3" id="4_eggnv"]
+[ext_resource type="AudioStream" uid="uid://ber4twkdnqpuw" path="res://Assets/SFX/smb_breakblock.mp3" id="5_yx27c"]
+[ext_resource type="AudioStream" uid="uid://btcl3yr0rsr5" path="res://Assets/SFX/smb_bump.mp3" id="6_lwe0t"]
+[ext_resource type="AudioStream" uid="uid://cbcuvcyft6gp7" path="res://Assets/SFX/smb_coin.mp3" id="7_t5d1d"]
+[ext_resource type="AudioStream" uid="uid://bdbreyuue3gjg" path="res://Assets/SFX/smb_fireball.mp3" id="8_p8f18"]
+[ext_resource type="AudioStream" uid="uid://byujh1vys2x86" path="res://Assets/SFX/smb_flagpole.mp3" id="9_4tmvc"]
+[ext_resource type="AudioStream" uid="uid://cj4dldqegry66" path="res://Assets/SFX/smb_gameover.mp3" id="10_7ired"]
+[ext_resource type="AudioStream" uid="uid://uek7vmbgxfur" path="res://Assets/SFX/smb_jump-small.mp3" id="11_w8miy"]
+[ext_resource type="AudioStream" uid="uid://bv3qdb6xvux8e" path="res://Assets/SFX/smb_jump-super.mp3" id="12_yjptg"]
+[ext_resource type="AudioStream" uid="uid://dctndcslxsdjt" path="res://Assets/SFX/smb_kick.mp3" id="13_7p7o1"]
+[ext_resource type="AudioStream" uid="uid://cg3abt2c8wjnb" path="res://Assets/SFX/smb_mariodie.mp3" id="14_bs2vb"]
+[ext_resource type="AudioStream" uid="uid://d2gqa3dujx56j" path="res://Assets/SFX/smb_pause.mp3" id="15_c1mfb"]
+[ext_resource type="AudioStream" uid="uid://c6hoc14g7an5o" path="res://Assets/SFX/smb_powerup.mp3" id="17_a5uxw"]
+[ext_resource type="AudioStream" uid="uid://ccksdl4oxpykq" path="res://Assets/SFX/smb_powerup_appears.mp3" id="18_rnogh"]
+[ext_resource type="AudioStream" uid="uid://drt286k4ph7dd" path="res://Assets/SFX/smb_stage_clear.mp3" id="19_kiswr"]
+[ext_resource type="AudioStream" uid="uid://drvyqjqvueiqu" path="res://Assets/SFX/smb_stomp.mp3" id="20_ej0h4"]
+[ext_resource type="AudioStream" uid="uid://cxbayx1aabevu" path="res://Assets/SFX/smb_warning.mp3" id="21_g4la6"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_qfdo6")
+
+[node name="Music" type="Node" parent="."]
+
+[node name="GroundTheme" type="AudioStreamPlayer" parent="Music" groups=["music"]]
+stream = ExtResource("2_7mk70")
+bus = &"Music"
+
+[node name="UndergroundTheme" type="AudioStreamPlayer" parent="Music" groups=["music"]]
+stream = ExtResource("3_woy2d")
+bus = &"Music"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="sfx_1up" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("4_dsllv")
+bus = &"SFX"
+
+[node name="sfx_breakblock" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("5_yx27c")
+bus = &"SFX"
+
+[node name="sfx_bump" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("6_lwe0t")
+bus = &"SFX"
+
+[node name="sfx_coin" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("7_t5d1d")
+bus = &"SFX"
+
+[node name="sfx_fireball" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("8_p8f18")
+bus = &"SFX"
+
+[node name="sfx_flagpole" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("9_4tmvc")
+bus = &"SFX"
+
+[node name="sfx_gameover" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("10_7ired")
+bus = &"SFX"
+
+[node name="sfx_jump_small" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("11_w8miy")
+bus = &"SFX"
+
+[node name="sfx_jump_super" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("12_yjptg")
+bus = &"SFX"
+
+[node name="sfx_kick" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("13_7p7o1")
+bus = &"SFX"
+
+[node name="sfx_mariodie" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("14_bs2vb")
+bus = &"SFX"
+
+[node name="sfx_pause" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("15_c1mfb")
+bus = &"SFX"
+
+[node name="sfx_pipe" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("4_eggnv")
+bus = &"SFX"
+
+[node name="sfx_powerup" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("17_a5uxw")
+bus = &"SFX"
+
+[node name="sfx_powerup_appears" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("18_rnogh")
+bus = &"SFX"
+
+[node name="sfx_stage_clear" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("19_kiswr")
+bus = &"SFX"
+
+[node name="sfx_stomp" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("20_ej0h4")
+bus = &"SFX"
+
+[node name="sfx_warning" type="AudioStreamPlayer" parent="SFX" groups=["SFX"]]
+stream = ExtResource("21_g4la6")
+bus = &"SFX"
