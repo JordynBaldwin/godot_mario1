@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://do8d7cft4187"]
 
-[ext_resource type="PackedScene" uid="uid://p35c3uda78ys" path="res://Scenes/audio_manager.tscn" id="1_uc4xy"]
+[ext_resource type="PackedScene" path="res://Scenes/audio_manager.tscn" id="1_uc4xy"]
 [ext_resource type="PackedScene" uid="uid://deox6mc4bsap4" path="res://Scenes/player.tscn" id="2_p63xi"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_6v4xu"]
 

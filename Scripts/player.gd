@@ -3,12 +3,13 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 const MAX_FALL_SPEED = 900
+const VALID_POWERS = ["small", "big", "flower"]
 var g_mult = 1.0
 var big_jump = false
 var warping = false
 
 var state = {
-	"size": 0,
+	"powerUp": "big",
 	"facing": "right",
 	"isJumping": false,
 	"isRunning": false,
@@ -26,10 +27,19 @@ func _ready():
 	Global.player = self
 	collider.connect("area_entered", bounce)
 
-func damage():
+func mario_die():
 	set_physics_process(false)
 	print("velocity on damage: " + str(velocity.y))
-	sprite.play("small_die")
+	sprite.play("die")
+	Global.audio_manager.sfx_mariodie.play()
+	collider.hide()
+
+func damage():
+	if state.powerUp == "small":
+		mario_die()
+	else:
+		changeState("powerUp", "small")
+		Global.audio_manager.sfx_pipe.play()
 
 func bounce():
 	velocity.y = JUMP_VELOCITY
@@ -45,12 +55,13 @@ func updateAnimation():
 	elif sprite.flip_h:
 		sprite.flip_h = false
 	
-	if state.isInAir: # Always use jumping frame when in air
-		sprite.play("small_jump")
-	elif velocity.x == 0:
-		sprite.play("small_stand")
-	else:
-		sprite.play("small_run")
+	if state["powerUp"] in VALID_POWERS:
+		if state.isInAir: # Always use jumping frame when in air
+			sprite.play("jump_%s" % state["powerUp"])
+		elif velocity.x == 0:
+			sprite.play("stand_%s" % state["powerUp"])
+		else:
+			sprite.play("run_%s" % state["powerUp"])
 
 func _process(delta):
 	debug_label.text = str(int(velocity.y))
@@ -77,6 +88,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		if is_on_floor():
 			bounce()
+			if state["powerUp"] == "small":
+				Global.audio_manager.sfx_jump_small.play()
+			else:
+				Global.audio_manager.sfx_jump_super.play()
 		changeState("isJumping", true)
 		g_mult = .3
 	if Input.is_action_just_released("ui_accept"):
