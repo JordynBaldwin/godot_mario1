@@ -1,11 +1,89 @@
-[gd_scene load_steps=2 format=3 uid="uid://287vj2qa67sl"]
+[gd_scene load_steps=10 format=3 uid="uid://287vj2qa67sl"]
+
+[ext_resource type="Script" path="res://Scripts/brick_block.gd" id="1_fnmat"]
+[ext_resource type="Texture2D" uid="uid://ciqj6opypmt2e" path="res://Assets/spritesheets/question_block.png" id="1_lf5yd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgjis"]
+size = Vector2(16, 16)
 
-[node name="brick_block" type="StaticBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc4ac"]
+atlas = ExtResource("1_lf5yd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbfcw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc4ac")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggv0x"]
+size = Vector2(16, 1)
+
+[sub_resource type="Animation" id="Animation_najun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0cplj"]
+resource_name = "bumped"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iwxh6"]
+_data = {
+"RESET": SubResource("Animation_najun"),
+"bumped": SubResource("Animation_0cplj")
+}
+
+[node name="BrickBlock" type="StaticBody2D"]
+collision_mask = 17
+script = ExtResource("1_fnmat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tgjis")
 one_way_collision_margin = 5.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rbfcw")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_ggv0x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Area2D")
+libraries = {
+"": SubResource("AnimationLibrary_iwxh6")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
