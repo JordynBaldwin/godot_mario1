@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -500.0
+const MAX_WALK_SPEED = 300.0
+const MAX_RUN_SPEED = 500.0
+const ACCELERATION = 20.0
+const JUMP_VELOCITY = -450.0
 const MAX_FALL_SPEED = 900
 const VALID_POWERS = ["small", "big", "flower"]
 var g_mult = 1.0
@@ -107,9 +109,9 @@ func _physics_process(delta: float) -> void:
 	
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = move_toward(velocity.x, direction*MAX_WALK_SPEED, ACCELERATION)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, ACCELERATION)
 	
 	updateAnimation()
 	
