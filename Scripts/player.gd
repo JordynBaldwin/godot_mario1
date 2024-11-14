@@ -111,7 +111,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = move_toward(velocity.x, direction*MAX_WALK_SPEED, ACCELERATION)
 	else:
-		velocity.x = move_toward(velocity.x, 0, ACCELERATION)
+		velocity.x = move_toward(velocity.x, 0, ACCELERATION/2)
 	
 	updateAnimation()
 	
